@@ -5,9 +5,57 @@
    Case Problem 3
 
    The Save Exotic Animals Trust schema
-   Author: 
-   Date:   
+   Author: Amalie Von Behren
+   Date:   06/16/24
 
    Filename:         roster.xsd
    Supporting Files: rosert.xml
 -->      
+   <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:simpleType name="pType">
+         <xs:restriction base="xs:string">
+            <xs:pattern value="home|work|cell"/>
+         </xs:restriction>
+      </xs:simpleType>
+
+      <xs:simpleType name="methodType">
+         <xs:restriction base="xs:string">
+            <xs:pattern value="Phone|Personal|Mail"/>
+         </xs:restriction>
+      </xs:simpleType>
+
+      <xs:simpleType name="levelType">
+         <xs:restriction base="xs:string">
+            <xs:pattern value="founder|sponsor|patron|friendship"/>
+         </xs:restriction>
+      </xs:simpleType>
+
+      <xs:simpleType name="phoneType">
+         <xs:restriction base="xs:string">
+            <xs:pattern value="\([0-9][0-9][0-9]\) [0-9][0-9][0-9]-[0-9][0-9][0-9][0-9]"/>
+         </xs:restriction>
+      </xs:simpleType>
+
+      <xs:complexType name="roster">
+         <xs:sequence>
+            <xs:element name="donor" minOccurs="1" maxOccurs="unbounded"></xs:element>
+         </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="donor">
+         <xs:sequence>
+            <xs:element name="name"  type="xs:string"/>
+            <xs:element name="address" type="xs:string"/>
+            <xs:element name="phone" type="phoneType" minOccurs="1" maxOccurs="unbounded"/>
+            <xs:element name="email" type="xs:string" minOccurs="0"/>
+            <xs:element name="donations" type="xs:decimal"/>
+            <xs:element name="method" type="methodType"/>
+            <xs:element name="effectiveDate" type="xs:date"/>
+         </xs:sequence>
+      </xs:complexType>
+
+
+      <xs:element name="roster" type="roster"></xs:element>
+      <xs:attribute name="type" type="pType"></xs:attribute>
+      <xs:attribute name="level" type="levelType"></xs:attribute>
+   </xs:schema>
