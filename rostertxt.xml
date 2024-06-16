@@ -12,7 +12,7 @@
    Supporting Files:   roster.xsd
 -->
 
-<roster>
+<roster xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="rostertxt.xsd">
    <donor level="founder">
       <name>David Brennan</name>
       <address>5133 Oak Street
